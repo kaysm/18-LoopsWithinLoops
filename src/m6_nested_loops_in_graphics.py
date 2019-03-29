@@ -83,7 +83,30 @@ def draw_L(window, circle, r, c):
     # TODO: 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
-    
+    circle.attach_to(window)
+    for k in range(r):
+        for j in range(3):
+            v = circle.clone()
+            v.move_by(circle.radius*2*j, circle.radius * 2 * k)
+            v.fill_color = circle.fill_color
+            v.attach_to(window)
+    x = circle.clone()
+    x.move_by(0, r*circle.radius*2)
+    for k in range(3):
+        for j in range(3):
+            v = x.clone()
+            v.move_by(circle.radius * 2 * j, circle.radius * 2 * k)
+            v.fill_color = circle.fill_color
+            v.attach_to(window)
+    q = x.clone()
+    q.move_by(3 * circle.radius * 2, 0)
+    for k in range(3):
+        for j in range(c):
+            v = q.clone()
+            v.move_by(circle.radius * 2 * j, circle.radius * 2 * k)
+            v.fill_color = circle.fill_color
+            v.attach_to(window)
+    window.render(.1)
 
 
 def run_test_draw_wall_on_right():
@@ -122,10 +145,16 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
-
+    c = rectangle
+    for k in range(n):
+        for j in range(k+1):
+            b = c.clone()
+            b.move_by(-rectangle.get_width()*j, rectangle.get_height()*k)
+            b.attach_to(window)
+    window.render(.1)
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
